@@ -1,0 +1,47 @@
+package main
+import (
+	"fmt"
+	"math/rand"
+)
+
+// Requirements: 8 characters, 1 uppercase, 1 symbol, 1 number, 1 lowercase.
+func main() {
+	// Holds capital letters, lowercase, numbers, symbols, as well as the password and length picked.
+	var capital string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	var letters string = "abcdefghijklmnopqrstuvwxyz"
+	var number string = "1234567890"
+	var symbol string = "!@#$%^&*"
+	var password string 
+	var length int
+
+	// Prompts for password length.
+	fmt.Printf("Enter password length: ")
+	fmt.Scanln(&length)
+
+	// Validates password length and declares var randomChar and randomIndex.
+for i := 0; i < length; i++ {
+	var randomChar byte
+	var randomIndex int
+
+	// Picks between the var capital, letters, number, and symbol endlessly until password is generated.
+	switch i % 4 {
+	case 0:
+ 		randomIndex = rand.Intn(len(capital))
+		randomChar = capital[randomIndex]
+	case 1:
+   	 	randomIndex = rand.Intn(len(letters))
+	 	randomChar = letters[randomIndex]
+	case 2:
+   		randomIndex = rand.Intn(len(number))
+		randomChar = number[randomIndex]
+	case 3:
+   		randomIndex = rand.Intn(len(symbol))
+		randomChar = symbol[randomIndex]
+	}
+
+	// Turns password into a string so it can be displayed.
+	password += string(randomChar)
+}
+	// Prints out the generated password.
+	fmt.Printf("Generated Password: %s\n", password)
+}
